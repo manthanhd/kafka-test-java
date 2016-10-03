@@ -1,5 +1,7 @@
-package com.manthanhd.kafka;
+package com.manthanhd.kafka.ping.consumer;
 
+import com.manthanhd.kafka.ping.deserializer.PingDeserializer;
+import com.manthanhd.kafka.ping.model.PingMessage;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.errors.WakeupException;
 

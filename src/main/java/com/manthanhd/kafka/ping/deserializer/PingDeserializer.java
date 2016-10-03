@@ -1,13 +1,14 @@
-package com.manthanhd.kafka;
+package com.manthanhd.kafka.ping.deserializer;
 
-import org.apache.kafka.common.serialization.Serializer;
+import com.manthanhd.kafka.ping.model.PingMessage;
+import org.apache.kafka.common.serialization.Deserializer;
 
 import java.util.Map;
 
 /**
  * Created by manthanhd on 03/10/2016.
  */
-public class PingSerializer implements Serializer<PingMessage> {
+public class PingDeserializer implements Deserializer<PingMessage> {
     private Map<String, ?> configs;
     private boolean isKey;
 
@@ -18,8 +19,9 @@ public class PingSerializer implements Serializer<PingMessage> {
     }
 
     @Override
-    public byte[] serialize(String topic, PingMessage data) {
-        return data.toString().getBytes();
+    public PingMessage deserialize(String topic, byte[] data) {
+        System.out.println("Received " + new String(data));
+        return new PingMessage();
     }
 
     @Override

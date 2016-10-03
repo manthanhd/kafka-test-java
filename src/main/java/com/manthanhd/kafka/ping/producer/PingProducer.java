@@ -1,5 +1,7 @@
-package com.manthanhd.kafka;
+package com.manthanhd.kafka.ping.producer;
 
+import com.manthanhd.kafka.ping.serializer.PingSerializer;
+import com.manthanhd.kafka.ping.model.PingMessage;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
