@@ -1,1 +1,1 @@
-include 'customer-web', 'customer-processor'
+include 'customer-web', 'customer-processor', 'customer-docker-base'
