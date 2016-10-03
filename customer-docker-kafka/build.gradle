@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath('se.transmode.gradle:gradle-docker:1.2')
+    }
+}
+
+apply plugin: 'docker'
+
+task build(type: Docker, dependsOn: ":customer-docker-zookeeper:build") {
+    dockerfile = file('src/main/docker/resources/Dockerfile')
+    applicationName = 'customer-kafka'
+    tagVersion = '1.0-SNAPSHOT'
+    doFirst {
+        copy {
+            from 'src/main/docker/resources/server.properties'
+            into stageDir
+        }
+
+        copy {
+            from 'src/main/docker/resources/launch.sh'
+            into stageDir
+        }
+    }
+}

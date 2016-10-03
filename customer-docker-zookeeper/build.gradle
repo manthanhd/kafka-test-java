@@ -11,20 +11,17 @@ buildscript {
 apply plugin: 'docker'
 
 task build(type: Docker) {
-    dockerfile = file('Dockerfile')
+    dockerfile = file('src/main/docker/resources/Dockerfile')
+    applicationName = 'customer-zookeeper'
+    tagVersion = '1.0-SNAPSHOT'
     doFirst {
         copy {
-            from 'server.properties'
+            from 'src/main/docker/resources/zookeeper.properties'
             into stageDir
         }
 
         copy {
-            from 'zookeeper.properties'
-            into stageDir
-        }
-
-        copy {
-            from 'launch.sh'
+            from 'src/main/docker/resources/launch.sh'
             into stageDir
         }
     }

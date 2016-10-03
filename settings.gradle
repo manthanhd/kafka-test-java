@@ -1,1 +1,1 @@
-include 'customer-web', 'customer-processor', 'customer-docker-base'
+include 'customer-web', 'customer-processor', 'customer-docker-kafka', 'customer-docker-zookeeper'
