@@ -8,7 +8,22 @@ buildscript {
     }
 }
 
+apply plugin: 'distribution'
 apply plugin: 'docker'
+
+version = '1.0-SNAPSHOT'
+distributions {
+    main {
+        baseName = 'customer-kafka'
+        contents {
+            from { 'src/main/docker/resources' }
+        }
+    }
+}
+
+distTar {
+    compression = Compression.GZIP
+}
 
 task build(type: Docker) {
     dockerfile = file('src/main/docker/resources/Dockerfile')
@@ -26,3 +41,5 @@ task build(type: Docker) {
         }
     }
 }
+
+build.finalizedBy(distTar)

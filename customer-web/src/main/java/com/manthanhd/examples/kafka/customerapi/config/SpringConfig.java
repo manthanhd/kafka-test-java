@@ -20,7 +20,7 @@ public class SpringConfig {
     @Bean
     public Producer<String, Customer> producer() {
         final Properties configProperties = new Properties();
-        configProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
+        configProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"kafka:9092");
         configProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringSerializer");
         configProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, CustomerSerializer.class.getName());
         return new KafkaProducer<String, Customer>(configProperties);

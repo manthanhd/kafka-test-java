@@ -7,8 +7,22 @@ buildscript {
         classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
-
+apply plugin: 'distribution'
 apply plugin: 'docker'
+
+version = '1.0-SNAPSHOT'
+distributions {
+    main {
+        baseName = 'customer-kafka'
+        contents {
+            from { 'src/main/docker/resources' }
+        }
+    }
+}
+
+distTar {
+    compression = Compression.GZIP
+}
 
 task build(type: Docker, dependsOn: ":customer-docker-zookeeper:build") {
     dockerfile = file('src/main/docker/resources/Dockerfile')
@@ -26,3 +40,5 @@ task build(type: Docker, dependsOn: ":customer-docker-zookeeper:build") {
         }
     }
 }
+
+build.finalizedBy(distTar)
