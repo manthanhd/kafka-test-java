@@ -24,7 +24,7 @@ distTar {
     compression = Compression.GZIP
 }
 
-task build(type: Docker, dependsOn: ":customer-docker-zookeeper:build") {
+task buildDocker(type: Docker, dependsOn: ":customer-docker-zookeeper:buildDocker") {
     dockerfile = file('src/main/docker/resources/Dockerfile')
     applicationName = 'customer-kafka'
     tagVersion = '1.0-SNAPSHOT'
@@ -41,4 +41,4 @@ task build(type: Docker, dependsOn: ":customer-docker-zookeeper:build") {
     }
 }
 
-build.finalizedBy(distTar)
+build.finalizedBy(buildDocker)

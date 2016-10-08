@@ -25,7 +25,7 @@ distTar {
     compression = Compression.GZIP
 }
 
-task build(type: Docker) {
+task buildDocker(type: Docker) {
     dockerfile = file('src/main/docker/resources/Dockerfile')
     applicationName = 'customer-zookeeper'
     tagVersion = '1.0-SNAPSHOT'
@@ -42,4 +42,4 @@ task build(type: Docker) {
     }
 }
 
-build.finalizedBy(distTar)
+build.finalizedBy(buildDocker)
