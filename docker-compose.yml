@@ -1,0 +1,16 @@
+zookeeper:
+  image: kafka-test-java/customer-zookeeper:1.0-SNAPSHOT
+kafka:
+  image: kafka-test-java/customer-kafka:1.0-SNAPSHOT
+  links:
+   - zookeeper:zookeeper
+processor:
+  image: kafka-test-java/customer-processor:1.0-SNAPSHOT
+  links:
+   - kafka:kafka
+web:
+  image: kafka-test-java/customer-web:1.0-SNAPSHOT
+  links:
+   - kafka:kafka
+  ports:
+   - "8080:8080"
